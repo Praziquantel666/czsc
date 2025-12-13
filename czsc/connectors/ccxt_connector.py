@@ -19,8 +19,8 @@ def __get_exchange(exchange="币安期货"):
 
     use_proxy = os.getenv("USE_PROXY", "0") == "1"
     proxies = {
-        "http": os.getenv("HTTP_PROXY", "http://127.0.0.1:10808"),
-        "https": os.getenv("HTTPS_PROXY", "http://127.0.0.1:10808"),
+        "http": os.getenv("HTTP_PROXY", "http://127.0.0.1:51324"),
+        "https": os.getenv("HTTPS_PROXY", "http://127.0.0.1:51324"),
     }
     if use_proxy:
         # v2rayN的http代理设置样例
