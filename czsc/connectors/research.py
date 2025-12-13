@@ -16,7 +16,7 @@ from pathlib import Path
 
 
 # 投研共享数据的本地缓存路径，需要根据实际情况修改
-cache_path = os.environ.get("czsc_research_cache", r"D:\CZSC投研数据")
+cache_path = os.environ.get("czsc_research_cache", r"G:\Quant_DATE\CZSC投研数据")
 if not os.path.exists(cache_path):
     raise ValueError(
         f"请设置环境变量 czsc_research_cache 为投研共享数据的本地缓存路径，当前路径不存在：{cache_path}。\n\n"
@@ -29,7 +29,7 @@ def get_groups():
 
     :return: 分组信息
     """
-    return ["A股主要指数", "A股场内基金", "中证500成分股", "期货主力"]
+    return ["A股主要指数", "A股场内基金", "中证500成分股", "期货主力", "加密货币"]
 
 
 def get_symbols(name, **kwargs):
