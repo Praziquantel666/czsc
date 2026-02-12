@@ -214,6 +214,12 @@ def get_raw_bars(symbol="BTCUSDT", period="4h", sdt="20240101", edt="20240308", 
         raise ValueError(f"不支持的交易所: {exchange}")
         # df = __exchange_fetch_ohlcv(e, symbol, sdt, edt, timeframes[period])
 
+    # 处理未获取到数据的情况，避免后续 KeyError
+    if df is None or df.empty:
+        logger.warning(f"get_raw_bars::未获取到 {symbol} {period} 的K线数据，时间段：{sdt} - {edt}")
+        empty_cols = ["dt", "open", "high", "low", "close", "vol", "amount", "symbol"]
+        return pd.DataFrame(columns=empty_cols)
+
     df = df.sort_values("dt").reset_index(drop=True)
     df = df.drop_duplicates("dt", keep="last")
     df["symbol"] = symbol

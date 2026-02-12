@@ -92,6 +92,7 @@ celerybeat-schedule
 # Environments
 .env
 .venv
+.vscode/
 env/
 venv/
 ENV/
@@ -114,3 +115,5 @@ venv.bak/
 
 #个人屏蔽
 personal_files/
+binance_connector.env
+过期无用/

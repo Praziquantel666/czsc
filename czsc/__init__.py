@@ -127,6 +127,8 @@ from czsc.py.calendar import (
     get_trading_dates,
 )
 
+from czsc.py.bar_generator import resample_bars
+
 from czsc.utils.trade import (
     adjust_holding_weights,
 )

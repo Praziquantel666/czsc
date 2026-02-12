@@ -61,7 +61,11 @@ def get_raw_bars(symbol, freq, sdt, edt, fq="前复权", **kwargs):
     raw_bars = kwargs.get("raw_bars", True)
     kwargs["fq"] = fq
     file = list(Path(cache_path).rglob(f"{symbol}.parquet"))[0]
-    freq = czsc.Freq(freq)
+    # 传入的 freq 可能是字符串（如 '1分钟'）或已有的 Freq 对象
+    # 不要强制使用顶层 czsc.Freq() 进行转换，因为当环境中使用 rust 版本的 Freq
+    # 时，直接用字符串传入给下游的 resample_bars（它会使用 Python 侧的 Freq 进行解析）更稳妥。
+    # 保持原始 freq 不变，交由 resample_bars 自行处理。
+    # freq = czsc.Freq(freq)
     kline = pd.read_parquet(file)
     if "dt" not in kline.columns:
         kline["dt"] = pd.to_datetime(kline["datetime"])
